@@ -1,0 +1,28 @@
+[tool.poetry]
+name = "international-delivery-service"
+version = "0.1.0"
+description = ""
+authors = ["Rinat Kurbanov"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+fastapi = "^0.105.0"
+aioredis = "^2.0.1"
+requests = "^2.31.0"
+apscheduler = "^3.10.4"
+uvicorn = "^0.25.0"
+pre-commit = "^3.6.0"
+python-dotenv = "^1.0.0"
+mysqlclient = "^2.2.1"
+sqlalchemy = {extras = ["asyncio"], version = "^2.0.23"}
+pydantic = "^2.5.2"
+pydantic-settings = "^2.1.0"
+aiologger = "^0.7.0"
+aiofiles = "^23.2.1"
+asyncmy = "^0.2.9"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

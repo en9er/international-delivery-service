@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "4000:4000"
+    depends_on:
+      - db
+      - redis
+    env_file:
+      - .env
+
+  db:
+    image: mysql:latest
+    environment:
+      DB_USER: ${DB_USER}
+      DB_PASS: ${DB_PASS}
+      DB_HOST: ${DB_HOST}
+      DB_NAME: ${DB_NAME}
+      MYSQL_ROOT_PASSWORD: ${DB_PASS}
+    ports:
+      - "3306:3306"
+
+  redis:
+    image: "redis:alpine"
+    ports:
+      - "6379:6379"
