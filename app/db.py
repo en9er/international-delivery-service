@@ -1,9 +1,8 @@
-import logging
 from asyncio import current_task
 
-from sqlalchemy.ext.asyncio import (AsyncEngine, AsyncSession,
-                                    async_scoped_session, async_sessionmaker,
-                                    create_async_engine)
+from sqlalchemy.ext.asyncio import (AsyncEngine, async_scoped_session,
+                                    async_sessionmaker, create_async_engine)
+from sqlmodel.ext.asyncio.session import AsyncSession
 
 from app.settings import settings
 
@@ -15,7 +14,9 @@ class DatabaseClient:
             echo=echo,
         )
         self.session_factory = async_sessionmaker(
-            bind=self.engine
+            bind=self.engine,
+            autoflush=False,
+            autocommit=False,
         )
 
     def get_scoped_session(self):
@@ -29,8 +30,8 @@ class DatabaseClient:
         session = self.get_scoped_session()
         try:
             yield session
-        except Exception as e:
-            logging.info(e)
+        # todo: too wide
+        except Exception:
             await session.rollback()
         finally:
             await session.close()

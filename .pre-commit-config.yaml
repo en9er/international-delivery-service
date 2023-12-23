@@ -32,3 +32,4 @@ repos:
           flake8-broken-line,
           flake8-print
         ]
+        exclude: "alembic"
