@@ -24,6 +24,7 @@ class UserRepository:
                 logger.debug(f'creating user: {instance}')
                 db_session.add(instance)
                 await db_session.commit()
+                await db_session.refresh(instance)
                 return instance
         except SQLAlchemyError as e:
             logger.error(f'An error occurred: {e}')
@@ -86,6 +87,7 @@ class ParcelRepository:
             return result.all()
         except SQLAlchemyError as e:
             logger.error(f'An error occurred: {e}')
+            return []
 
     @staticmethod
     async def get_full_info_by_id(

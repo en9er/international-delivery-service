@@ -38,7 +38,6 @@ async def register_parcel(
     session_id = request.cookies.get('session_id')
     try:
         user = await user_repo.get_or_create(db_session, session_id)
-
         parcel_type = await parcel_type_repo.get_by_name(
             db_session, parcel_filter.parcel_type
         )
@@ -54,6 +53,7 @@ async def register_parcel(
                 ),
             )
     except SQLAlchemyError as e:
+        logger.info(e)
         return JSONResponse(status_code=500, content=jsonable_encoder(e))
 
     return JSONResponse(

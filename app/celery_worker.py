@@ -96,6 +96,6 @@ celery.conf.beat_schedule = {
     'update_models_with_none_delivery_cost': {
         'task': 'app.celery_worker.update_models_with_none_delivery_cost',
         # try to update after currency rate is refreshed
-        'schedule': timedelta(seconds=10),
+        'schedule': timedelta(minutes=1),
     },
 }
