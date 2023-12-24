@@ -12,4 +12,4 @@ RUN pip install --upgrade --no-cache-dir pip==23.1.2 && \
     poetry install
 
 COPY . .
-CMD ["sh", "-c", "uvicorn app.app:app --reload --use-colors --host 0.0.0.0 --port $PORT && alembic upgrade head"]
+CMD ["sh", "-c", "alembic upgrade head && uvicorn app.app:app --reload --use-colors --host 0.0.0.0 --port $PORT"]
