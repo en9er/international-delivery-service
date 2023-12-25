@@ -36,6 +36,24 @@ Before you begin, ensure you have the following installed on your system:
 
    Your FastAPI application is now accessible at http://localhost:4000.
 
+5. After first startup:
+   create database
+   ```
+   docker exec -it mysql-container /bin/bash
+   ```
+   ```
+   mysql
+   ```
+   ```
+   CREATE DATABASE delivery_db;
+   use delivery_db;
+   ```
+   Also need to create couple parcel types and companies
+   ```
+   INSERT INTO parcel_types(name) VALUES ('clothing'), ('electronics'), ('miscellaneous');
+   INSERT INTO companies(name) VALUES ('company1'), (company2);
+   ```
+
 ## Environment variables
 Create a .env file in the project's root directory and copy .env.Example content:
 Change variables if required
